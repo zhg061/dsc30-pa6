@@ -16,6 +16,8 @@ public class FindKLargestTest {
     ArrayList<Integer> num2;
     FindKLargest test3;
     ArrayList<Integer> num3;
+    FindKLargest test4;
+    ArrayList<Integer> num4;
 
     @org.junit.Before
     public void setUp() throws Exception {
@@ -25,6 +27,8 @@ public class FindKLargestTest {
         num2 = new ArrayList<>();
         test3 = new FindKLargest();
         num3 = new ArrayList<>();
+        test4 = new FindKLargest();
+        num4 = new ArrayList<>();
     }
     @Test
     public void findKLargest() {
@@ -55,12 +59,13 @@ public class FindKLargestTest {
         num3.add(111);
         num3.add(99);
         num3.add(101);
-        ArrayList<Integer> result3 = test3.findKLargest(4, num3);
+        ArrayList<Integer> result3 = test3.findKLargest(1, num3);
         assertEquals(new Integer(300), result3.get(0));
-        assertEquals(new Integer(200), result3.get(1));
-        assertEquals(new Integer(111), result3.get(2));
-        assertEquals(new Integer(101), result3.get(3));
-
+        num4.add(0);
+        num4.add(9);
+        num4.add(8);
+        ArrayList<Integer> result4 = test4.findKLargest(0, num4);
+        assertEquals(new ArrayList<Integer>(), result4);
 
     }
 }
