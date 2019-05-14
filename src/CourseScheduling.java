@@ -199,11 +199,11 @@ public class CourseScheduling {
                     List<Course> studentEnrolled = curStudent.getmyEnrolledCourses();
                     List<Course> studentWaitlist = curStudent.getmyWaitlist();
                     //
-                    if (studentEnrolled.contains(curCourse) ){
+                    if (studentEnrolled.contains(curCourse) ) {
                         printFail(curStudent, curCourse, true);
                         continue;
                     }
-                    if (studentWaitlist.contains(curCourse) ){
+                    if (studentWaitlist.contains(curCourse) ) {
                         printFail(curStudent, curCourse, false);
                         continue;
                     }
@@ -221,8 +221,8 @@ public class CourseScheduling {
                     //iterate the loop of how many people to enroll for each course
                     int num = Integer.parseInt(scWord.next());
                     for (int j = 0; j < num; j++) {
-                        for (int i = 0; i < courseList.size(); i++){
-                            if (!courseList.get(i).isFull()){
+                        for (int i = 0; i < courseList.size(); i++) {
+                            if (!courseList.get(i).isFull()) {
                                 Registration reg = courseList.get(i).processWaitlist();
                                 if (reg == null) {
                                     continue;

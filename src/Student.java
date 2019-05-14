@@ -21,7 +21,9 @@ public class Student implements Student_Interface {
      * @param coins Course Coins
      */
     public Student(String id, String name, int coins) {
-        //TODO
+        //constructor that set student's id name, coins
+        // create empty array list for both
+        // waitlist class and enrolled classes
         this.studentID = id;
         this.name = name;
         this.courseCoins = coins;
@@ -29,7 +31,7 @@ public class Student implements Student_Interface {
         this.myWaitlist = new ArrayList<Course>();
     }
 
-    //TODO - Implement methods from the interface
+    //Implement methods from the interface
 
     /**
      * Returns a string representation of the Student that includes the name and

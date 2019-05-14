@@ -152,7 +152,7 @@ public class dHeap<T extends Comparable<? super T>>
      * move the element at index index up
      * @param index
      */
-    private void bubbleUp(int index){
+    private void bubbleUp(int index) {
         while (index > 0) {
             int parentIndex = (index - 1) / d;
             // if the parent index is greater,
@@ -210,7 +210,7 @@ public class dHeap<T extends Comparable<? super T>>
                     currValue = heap[i + childIndex];
                     currIndex = i + childIndex;
                 }
-                else if (heap[i + childIndex].compareTo(currValue) < 0 && !isMaxHeap){
+                else if (heap[i + childIndex].compareTo(currValue) < 0 && !isMaxHeap) {
                     currValue = heap[i + childIndex];
                     currIndex = i + childIndex;
                 }

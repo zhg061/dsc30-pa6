@@ -9,7 +9,7 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
     private dHeap<T> data;
     private static int DEFAULT_SIZE = 5;
     public MyPriorityQueue(int initialSize) {
-        //TODO
+        //constructor that create an empty dheap array with the initial size
         data = new dHeap<>(DEFAULT_SIZE, initialSize, true);
 
     }
@@ -52,7 +52,7 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      */
     public void clear() {
         //Removes all elements from the queue.
-        data = new dHeap<>(DEFAULT_SIZE, data.size(), true);;
+        data = new dHeap<>(DEFAULT_SIZE, data.size(), true);
     }
 
     /**
