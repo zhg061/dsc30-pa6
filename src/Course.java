@@ -114,7 +114,7 @@ public class Course implements Course_Interface {
      * @return Registration Request that was processed
      */
     @Override
-    public Registration processWaitlist(){
+    public Registration processWaitlist() {
         //removes the next Registration from the Priority Queue
         // and enrolls the Student into the Course.
         // Note that you must update the Course Roster
@@ -130,6 +130,6 @@ public class Course implements Course_Interface {
         return pollStudent;
     }
     public MyPriorityQueue<Registration> waitlistGetter() {
-         return waitlistQueue;
+        return waitlistQueue;
     }
 }
