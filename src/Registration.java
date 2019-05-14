@@ -1,3 +1,7 @@
+/*
+ * NAME: Zhaoyi Guo
+ * PID: A15180402
+ */
 public class Registration implements Comparable<Registration> {
 
     private Student student;
@@ -6,19 +10,34 @@ public class Registration implements Comparable<Registration> {
     private long timestamp;
 
     public Registration(Student student, Course course, int coins) {
-        //TODO
+        //constructor that sets studnet, course, and the coins the student puts
+        this.student = student;
+        this.course = course;
+        this.coins = coins;
     }
 
+    /**
+     * geeter mthod for student
+     * @return student
+     */
     public Student getStudent() {
-        return null; //XXX-CHANGE-XXX
+        return student; //XXX-CHANGE-XXX
     }
 
+    /**
+     * getter method for course
+     * @return course
+     */
     public Course getCourse() {
-        return null; //XXX-CHANGE-XXX
+        return course; //XXX-CHANGE-XXX
     }
 
+    /**
+     * getter method for coins
+     * @return coins
+     */
     public int getCoins() {
-        return -1; //XXX-CHANGE-XXX
+        return coins; //XXX-CHANGE-XXX
     }
 
     /**
@@ -34,7 +53,19 @@ public class Registration implements Comparable<Registration> {
      */
     @Override
     public int compareTo(Registration o) {
-        return -1; //XXX-CHANGE-XXX
+        // compare which registration has priority
+        // more coins more priority
+        if (coins < o.coins)
+            return -1;
+        else if (coins > o.coins)
+            return 1;
+        // smaller timestamp, more priority
+        else {
+            if (timestamp > o.timestamp)
+                return -1;
+            else
+                return 1;
+        }
     }
 
     /**
@@ -43,5 +74,14 @@ public class Registration implements Comparable<Registration> {
      */
     public void setTimestamp() {
         timestamp = System.nanoTime();
+    }
+
+    /**
+     * check the current time, coins of one student
+     * @return the student, the student's coin and timestamp for testing
+     */
+    public String toString() {
+        // get the string of student, time, and coins
+        return student.getStudentName() + " " + getCoins() + " " + timestamp;
     }
 }

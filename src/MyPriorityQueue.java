@@ -1,7 +1,17 @@
+import java.util.Arrays;
+
+/*
+ * NAME: Zhaoyi Guo
+ * PID: A15180402
+ */
 public class MyPriorityQueue<T extends Comparable<? super T>> {
 
+    private dHeap<T> data;
+    private static int DEFAULT_SIZE = 5;
     public MyPriorityQueue(int initialSize) {
         //TODO
+        data = new dHeap<>(DEFAULT_SIZE, initialSize, true);
+
     }
 
     /**
@@ -13,8 +23,13 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return returns true
      */
     public boolean offer(T element) throws NullPointerException {
-        return false; //XXX-CHANGE-XXX
-        //TODO
+        //Inserts the specified element ‘e’ into the priority queue.
+        //Throws NullPointerException if the element ‘e’ is null.
+        if (element == null)
+            throw new NullPointerException();
+
+        data.add(element);
+        return true;
     }
 
     /**
@@ -25,15 +40,19 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * empty.
      */
     public T poll() {
-        return null; //XXX-CHANGE-XXX
-        //TODO
+        //Removes and returns the head of the priority queue
+        // (the largest element), or null if the queue is empty.
+        if (data.size() == 0)
+            return null; //XXX-CHANGE-XXX
+        return data.remove();
     }
 
     /**
      * Clears the contents of the queue
      */
     public void clear() {
-        //TODO
+        //Removes all elements from the queue.
+        data = new dHeap<>(DEFAULT_SIZE, data.size(), true);;
     }
 
     /**
@@ -43,6 +62,10 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return the next item to be removed, null if the queue is empty
      */
     public T peek() {
-        return null; //XXX-CHANGE-XXX
+    // Returns the head of the queue,
+    // or null if the queue is empty.
+        if (data.size() == 0)
+            return null;
+        return data.element(); //XXX-CHANGE-XXX
     }
 }

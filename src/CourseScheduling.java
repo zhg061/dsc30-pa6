@@ -1,3 +1,7 @@
+/*
+ * NAME: Zhaoyi Guo
+ * PID: A15180402
+ */
 import java.io.*;
 import java.util.*;
 
@@ -133,7 +137,12 @@ public class CourseScheduling {
      */
     public static Course getCourse(String code) {
         ListIterator<Course> iter = courseList.listIterator();
-        //TODO
+        //iterate through the while loop to find the course with the matched code
+        while (iter.hasNext()) {
+            Course c = iter.next();
+            if (c.getCourseCode().equals(code))
+                return c;
+        }
         return null;
     }
 
@@ -146,10 +155,21 @@ public class CourseScheduling {
     public static Student getStudent(String pid) {
         ListIterator<Student> iter = studentList.listIterator();
 
-        //TODO
+        //iterate the while loop to find the student with the matched PID
+        while(iter.hasNext())
+        {
+            Student s = iter.next();
+            if(s.getStudentID().equals(pid))
+                return s;
+        }
         return null;
+
     }
 
+    /**
+     * main method to get the actual input of the file
+     * @param args
+     */
     public static void main(String[] args) {
         populateCourseandStudents(args[0]);
         File file = new File(args[1]);
@@ -168,13 +188,52 @@ public class CourseScheduling {
                 }
                 if (property.equals("register")) {
                     //add a new student to the course list
-
-                    //TODO
+                    //get the pid, course code, coins
+                    String pid = scWord.next();
+                    Student curStudent = getStudent(pid);
+                    String code = scWord.next();
+                    int coins = Integer.parseInt(scWord.next());
+                    Course curCourse = getCourse(code);
+                    Registration curRegist = new Registration(curStudent, curCourse, coins);
+                    //get the current student's list of enroll and waitlisted
+                    List<Course> studentEnrolled = curStudent.getmyEnrolledCourses();
+                    List<Course> studentWaitlist = curStudent.getmyWaitlist();
+                    //
+                    if (studentEnrolled.contains(curCourse) ){
+                        printFail(curStudent, curCourse, true);
+                        continue;
+                    }
+                    if (studentWaitlist.contains(curCourse) ){
+                        printFail(curStudent, curCourse, false);
+                        continue;
+                    }
+                    if (curStudent.getCoins() < coins) {
+                        printNoCoins(curStudent, curCourse);
+                        continue;
+                    }
+                    curCourse.addToWaitlist(curRegist);
+                    print(curStudent, curCourse, coins, false);
+                    curStudent.deductCoins(coins);
                 } else if (property.equals("enroll")) {
                     //process registrations in the waitlist
                     System.out.println("\n####STARTING BATCH ENROLLMENT####");
 
-                    //TODO
+                    //iterate the loop of how many people to enroll for each course
+                    int num = Integer.parseInt(scWord.next());
+                    for (int j = 0; j < num; j++) {
+                        for (int i = 0; i < courseList.size(); i++){
+                            if (!courseList.get(i).isFull()){
+                                Registration reg = courseList.get(i).processWaitlist();
+                                if (reg == null) {
+                                    continue;
+                                }
+                                print(reg.getStudent(), reg.getCourse(), reg.getCoins(), true);
+                            }
+                            else
+                                printCapacity(courseList.get(i));
+
+                        }
+                    }
                     System.out.println("####ENDING BATCH ENROLLMENT####\n");
                 } else {
                     break;
